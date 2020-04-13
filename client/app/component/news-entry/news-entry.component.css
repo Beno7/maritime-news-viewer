@@ -1,0 +1,30 @@
+.card-img-top {
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0px;
+  height: 200px;
+  position: relative;
+  background-color: lightgray !important;
+}
+
+.card-img-top.article-image {
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.card-img-top > img.icon {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.card.clickable:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}

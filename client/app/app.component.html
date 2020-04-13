@@ -1,0 +1,41 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Display on source loading -->
+    <mat-progress-bar *ngIf="newsService.isLoadingSources.value" mode="indeterminate">
+    </mat-progress-bar>
+    <!-- Actual App Content -->
+    <ng-container *ngIf="!newsService.isLoadingSources.value">
+      <!-- Actual App Content -->
+      <ng-container *ngIf="!sourceErrorMessage">
+        <!-- List of Sources -->
+        <div class="col-4 col-sm-3 col-md-2 px-0">
+          <app-navigator></app-navigator>
+        </div>
+        <!-- List of News Articles -->
+        <div class="col-8 col-sm-9 col-md-10 px-0">
+          <app-news-pane></app-news-pane>
+        </div>
+      </ng-container>
+      <!-- News Source Error Message Display -->
+      <ng-container *ngIf="sourceErrorMessage">
+        <div class="col-12 text-center">
+          <br>
+          <br>
+          <h3 class="col-12 text-danger">
+            An error occurred
+          </h3>
+          <br>
+          <br>
+          <h5>
+            {{sourceErrorMessage}}
+          </h5>
+          <br>
+          <p>
+            Click <a href="#" (click)="newsService.loadSources()">Here</a> to reload data.
+          </p>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

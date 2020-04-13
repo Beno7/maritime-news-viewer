@@ -1,0 +1,12 @@
+.list-group > .list-group-item {
+  border-radius: 0px !important;
+}
+
+.list-group > .list-group-item.inactive:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.list-group {
+  overflow-y: auto;
+}

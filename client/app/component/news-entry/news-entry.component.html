@@ -1,0 +1,31 @@
+<!-- The News Card -->
+<div
+  class="card"
+  (click)="openLink(news.url)"
+  [ngClass]="{
+    'clickable': isStringValueValid(news.url)
+  }"
+>
+  <!-- Set Image to news.urlToImage if news.toUrlImage value is valid -->
+  <ng-container *ngIf="isStringValueValid(news.urlToImage)">
+    <div
+      class="card-img-top article-image"
+      [ngStyle]="{
+        'background': 'url(' + news.urlToImage + ')'
+      }"
+    >
+    </div>
+  </ng-container>
+  <!-- Set image to a default icon if it is invalid -->
+  <ng-container *ngIf="!news.urlToImage || news.urlToImage === 'null'">
+    <div class="card-img-top">
+      <img [src]="'assets/document.png'" alt="Card image cap" class="icon">
+    </div>
+  </ng-container>
+  <!-- Display news Information (title, date, description) -->
+  <div class="card-body">
+    <h5 class="card-title text-justify">{{news.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{news.publishedAt | date:'dd/MM/yyyy'}}</h6>
+    <p class="card-text text-justify">{{news.description}}</p>
+  </div>
+</div>

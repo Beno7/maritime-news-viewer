@@ -1,0 +1,56 @@
+<!-- Will contain news entries -->
+<div class="row px-4 vh-100 news-container" #newsContainer>
+  <!-- Show Angular Material Progress Bar on load -->
+  <mat-progress-bar *ngIf="newsService.isLoading()" mode="indeterminate"></mat-progress-bar>
+  <!-- Show if no longer loading -->
+  <ng-container *ngIf="!newsService.isLoadingSources.value">
+    <!-- Error Messages - Display as Needed -->
+    <div class="col-12" *ngIf="newsListErrorMessage">
+      <div class="alert alert-danger my-5" role="alert">
+        An error occurred: {{newsListErrorMessage}}.&nbsp;
+        <span *ngIf="newsService.newsList.value.length === 0">Click <a href="#" (click)="newsService.loadNews()">Here</a> to reload data.</span>
+        <span *ngIf="newsService.newsList.value.length > 0">Please try again!</span>
+      </div>
+    </div>
+    <!-- News Articles - Display if paginating, is done loading, and has entries -->
+    <ng-container *ngIf="hasEntries() || newsService.isPaginating">
+      <div class="col-lg-6 col-md-6 col-sm-12 my-3" *ngFor="let news of newsService.newsList.value">
+        <app-news-entry [news]="news">
+        </app-news-entry>
+      </div>
+    </ng-container>
+    <!-- No News Articles Placeholder - display when is done loading, has no entries, and has no errors -->
+    <ng-container *ngIf="shouldShowNoEntriesLabel() && !newsListErrorMessage">
+      <h3 class="col-12 text-primary text-center py-5 my-5">
+        No Articles in this Category.
+      </h3>
+    </ng-container>
+    <!-- Show when loading is done and has entries -->
+    <ng-container *ngIf="shouldShowPagination() && !shouldShowNoEntriesLabel()">
+      <nav aria-label="Page navigation" class="col-12 align-content-center">
+        <ul class="pagination justify-content-end inline-block">
+          <li class="page-item"
+            [ngClass]="{
+              'disabled': disablePrev()
+            }"
+            (click)="goPrev()"
+          >
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">{{currentPageText}} out of {{newsService.totalResultsCount}}</a>
+          </li>
+          <li
+            class="page-item"
+            [ngClass]="{
+              'disabled': disableNext()
+            }"
+            (click)="goNext()"
+          >
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </ng-container>
+  </ng-container>
+</div>

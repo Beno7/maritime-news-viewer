@@ -1,0 +1,16 @@
+<ul class="list-group vh-100">
+  <!-- Loop through retrieved Article Sources -->
+  <ng-container *ngFor="let source of newsService.sources.value">
+    <!-- Create a Navigation Entry for each Article Source -->
+    <li
+      class="list-group-item"
+      (click)="newsService.activeSourceId = source.id"
+      [ngClass]="{
+        'active': newsService.isActiveSourceIdSameWith(source.id),
+        'inactive': !newsService.isActiveSourceIdSameWith(source.id)
+      }"
+    >
+      {{source.name}}
+    </li>
+  </ng-container>
+</ul>

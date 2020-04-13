@@ -1,27 +1,29 @@
-# NewsViewer
+# Maritime News Viewer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.9.
+This application is a Maritime News Viewer powered by https://newsapi.org/. It is primarily made with Angular 6 and Nodejs. It makes use of Bootstrap and Angular Material UI Frameworks.
 
-## Development server
+## Running the App
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A prerequisite is to run `npm i` to install all the required npm packages.
 
-## Code scaffolding
+The client app is already built and is set to `http://localhost:3000`. If the said port is available in the machine where this App will reside in, start up the server via `npm start` or `node ./server`. Once the server has started, access the web page via heading to `http://localhost:3000` in a browser.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To change the https://newsapi.org/ API Key, head over to `server/configs/constants.js` and change `newsRepository.apiKey`.
 
-## Build
+If the default port is not available in the machine where this app will reside in, change the port either by setting `process.env.PORT` or the default value itself in `server/index.js`. However, it is noteworthy that changing the server's runtime port will render the client app disconnected. Thus, go to `client/environments/environment.ts` or `client/environments/environment.prod.ts` and change `apiUrl` to the new server directory. Once done, either serve the Angular App via `ng serve` or build it with `ng build` or `ng build --prod`, depending on the environment aimed for.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Improvements
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The code focuses mainly on the Core Functionalities of an RSS Feed. As such, the following are available for improvements:
+1. User Interface and User Experience
+  - Design
+    - The UI has been implemented via Bootstrap defaults. As such, there is a large room for improvement in terms of design.
+  - Mobile
+    - Although the UI adapts with viewport changes, it is currently not optimized for Mobile Viewports.
+2. Backend Authorization
+  - The backend currently has no Access Token required to access its APIs. A simple express middleware, and JWT or the https://newsapi.org/ API Key itself would suffice.
+3. Backend Data Persistence
+  - There are currently no implemented Backend Data Persistence. As such, it is recommended to make
+  use of redis.
+4. Client Side Caching
+  - There are currently no implemented Caching at the Client Side.
